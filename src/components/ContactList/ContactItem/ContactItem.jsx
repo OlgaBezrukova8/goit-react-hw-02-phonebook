@@ -3,11 +3,13 @@ import { Item, Button, Text } from '../ContactList.module';
 export const ContactItem = ({ id, name, number, onDeleteContact }) => {
   return (
     <>
-      <Item key={id}>
+      <Item>
         <Text>
           {name}: {number}
         </Text>
-        <Button onClick={onDeleteContact}>Delete</Button>
+        <Button id={name} onClick={() => onDeleteContact(id)}>
+          Delete
+        </Button>
       </Item>
     </>
   );
