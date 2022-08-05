@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Label, Input } from './ContactForm.module';
+import PropTypes from 'prop-types';
 
 export class ContactForm extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     name: '',
     number: '',
@@ -14,6 +19,7 @@ export class ContactForm extends Component {
 
   render() {
     const { onSubmit } = this.props;
+    const { name, number } = this.state;
 
     return (
       <Container>
@@ -24,7 +30,7 @@ export class ContactForm extends Component {
               type="text"
               name="name"
               onChange={this.handleChange}
-              value={this.state.name}
+              value={name}
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
@@ -34,7 +40,7 @@ export class ContactForm extends Component {
           <Label>
             Number
             <Input
-              value={this.state.number}
+              value={number}
               onChange={this.handleChange}
               type="tel"
               name="number"
